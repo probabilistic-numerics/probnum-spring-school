@@ -1,0 +1,9 @@
+# Notebooks
+jupyter
+
+# Plotting
+matplotlib
+
+# Scientific computing
+numpy
+networkx
