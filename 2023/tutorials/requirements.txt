@@ -3,6 +3,7 @@ jupyter
 
 # Plotting
 matplotlib
+tueplots
 
 # Scientific computing
 numpy
