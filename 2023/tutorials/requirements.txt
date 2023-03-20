@@ -4,7 +4,9 @@ jupyter
 # Plotting
 matplotlib
 tueplots
+mpl_point_clicker
+ipympl
 
 # Scientific computing
 numpy
-networkx
+git+https://github.com/JonathanWenger/itergp.git@main#egg=itergp
