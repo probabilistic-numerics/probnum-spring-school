@@ -31,7 +31,7 @@ class Dataset:
         rng_state, rng_state_mixture_means = backend.random.split(
             backend.random.rng_state(seed)
         )
-        mixture_means = 0.5 * backend.random.standard_normal(
+        mixture_means = 0.25 * backend.random.standard_normal(
             rng_state_mixture_means, shape=(n_mixture_means,) + data_shape
         ) + 0.5 * backend.ones(data_shape)
         X_list = []
