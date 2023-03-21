@@ -46,10 +46,10 @@ def movement_cost(
     uphill_mask = elevation_change >= 0.0
     downhill_mask = elevation_change < 0.0
     cost_uphill_movement = backend.sum(
-        np.exp(elevation_change[uphill_mask]) / num_curve_steps
+        np.exp(elevation_change[uphill_mask] * num_curve_steps) / num_curve_steps
     )
     cost_downhill_movement = backend.sum(
-        np.exp(elevation_change[downhill_mask]) / num_curve_steps
+        np.exp(elevation_change[downhill_mask] * num_curve_steps) / num_curve_steps
     )
 
     return cost_uphill_movement + cost_downhill_movement

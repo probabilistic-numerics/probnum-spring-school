@@ -55,9 +55,11 @@ class Dataset:
             minval=0.0,
             maxval=1.0,
         )
+        # Shuffle
+        np.random.default_rng(42).shuffle(self._X, axis=0)
 
         # Noise on targets
-        noise_scale = 300
+        noise_scale = 0.1
         rng_state, rng_state_noise = backend.random.split(rng_state)
         self._y = latent_fn(self._X) + noise_scale * backend.random.standard_normal(
             rng_state_noise, shape=(num,)

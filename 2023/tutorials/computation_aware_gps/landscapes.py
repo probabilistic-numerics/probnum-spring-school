@@ -28,8 +28,8 @@ def generate_landscape(
     rweights0 = backend.random.uniform(
         rng_state_rweights0,
         shape=(n0,),
-        minval=-5.0,
-        maxval=5.0,
+        minval=-1.0,
+        maxval=1.0,
     )
     X0 = backend.random.uniform(
         rng_state_X0,
@@ -47,8 +47,8 @@ def generate_landscape(
     rweights1 = backend.random.uniform(
         rng_state_rweights1,
         shape=(n1,),
-        minval=-3.0,
-        maxval=3.0,
+        minval=-0.66,
+        maxval=0.66,
     )
     X1 = backend.random.uniform(
         rng_state_X1,
@@ -58,6 +58,6 @@ def generate_landscape(
     )
 
     # Complete landscape
-    return lambda x: 1000 * (
-        kernel0.matrix(x, X0) @ rweights0 + kernel1.matrix(x, X1) @ rweights1
+    return (
+        lambda x: kernel0.matrix(x, X0) @ rweights0 + kernel1.matrix(x, X1) @ rweights1
     )
