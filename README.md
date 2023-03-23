@@ -7,3 +7,11 @@
 
 ## Tutorials
 Tutorial materials of the [Probabilistic Numerics Spring School](https://www.probnumschool.org/).
+
+## Installation
+In a new Python environment simply run
+
+```bash
+cd 2023_tutorials
+pip install -r requirements.txt
+```
