@@ -9,7 +9,7 @@ from scipy.interpolate import make_interp_spline
 def movement_cost(
     curve: backend.Array,
     landscape: Callable[[backend.Array], float],
-    num_timesteps: int = 10**4,
+    num_timesteps: int = 10**3,
 ) -> backend.Array:
     """Compute the cost of moving along a curve.
 
@@ -45,7 +45,7 @@ def movement_cost(
             "time": time,
         }
 
-    timepoints = np.cumsum(backend.linalg.vector_norm(steps, axis=1), axis=0)
+    timepoints = np.cumsum(np.linalg.norm(steps, axis=1), axis=0)
     timepoints = np.insert(timepoints, 0, 0.0) / timepoints[-1]
 
     # Interpolate curve
@@ -53,7 +53,7 @@ def movement_cost(
     points_on_curve = curve_interp(time)
 
     # Length of the curve segments
-    curve_segment_lengths = backend.linalg.vector_norm(
+    curve_segment_lengths = np.linalg.norm(
         points_on_curve[1:, :] - points_on_curve[0:-1, :], axis=1
     )
 
@@ -79,5 +79,5 @@ def movement_cost(
         "gradient": gradient,
         "timepoints": timepoints,
         "time": time,
-        "cumulative_distance": np.cumsum(curve_segment_lengths),
+        "cumulative_distance": np.insert(np.cumsum(curve_segment_lengths), 0, 0.0),
     }

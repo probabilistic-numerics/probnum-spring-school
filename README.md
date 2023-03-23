@@ -8,7 +8,7 @@
 ## Tutorials
 Tutorial materials of the [Probabilistic Numerics Spring School](https://www.probnumschool.org/).
 
-## Installation
+## Setup
 In a new Python environment simply run
 
 ```bash

@@ -39,8 +39,8 @@ def generate_landscape(
     )
 
     # Small structures
-    n1 = 40
-    kernel1 = kernels.Matern(input_shape, lengthscale=0.05)
+    n1 = 20
+    kernel1 = kernels.Matern(input_shape, lengthscale=0.1)
     rng_state, rng_state_rweights1, rng_state_X1 = backend.random.split(
         rng_state=rng_state, num=3
     )
