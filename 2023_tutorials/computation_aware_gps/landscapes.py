@@ -5,7 +5,7 @@ from probnum.randprocs import kernels
 
 
 def generate_landscape(
-    seed: int, xlims=[0.0, 1.0]
+    seed: int, x0_lims=[0.0, 1.0], x1_lims=[0.0, 1.0]
 ) -> Callable[[backend.Array], backend.Array]:
     """Generate a random landscape.
 
@@ -13,8 +13,6 @@ def generate_landscape(
     ----------
     seed
         Seed for the landscape.
-    xlims
-        Elementwise minimum and maximum of the inputs.
     """
     rng_state = backend.random.rng_state(seed)
     input_shape = (2,)
@@ -34,8 +32,8 @@ def generate_landscape(
     X0 = backend.random.uniform(
         rng_state_X0,
         shape=(n0, 2),
-        minval=xlims[0],
-        maxval=xlims[1],
+        minval=x0_lims[0],
+        maxval=x0_lims[1],
     )
 
     # Small structures
@@ -53,8 +51,8 @@ def generate_landscape(
     X1 = backend.random.uniform(
         rng_state_X1,
         shape=(n1, 2),
-        minval=xlims[0],
-        maxval=xlims[1],
+        minval=x1_lims[0],
+        maxval=x1_lims[1],
     )
 
     # Complete landscape
