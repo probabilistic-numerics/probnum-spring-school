@@ -50,6 +50,7 @@ def movement_cost(
             "arc_lengths": arc_lengths,
             "arc_lengths_to_points": arc_lengths_to_points,
             "elevation": landscape(curve[0, :]) * backend.ones((num_steps + 1,)),
+            "gradient": backend.zeros((num_steps,)),
         }
 
     # Interpolate curve
