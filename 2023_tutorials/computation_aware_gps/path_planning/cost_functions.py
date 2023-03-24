@@ -6,12 +6,12 @@ from probnum import backend
 from scipy.interpolate import make_interp_spline
 
 
-def mc(
+def energy_cost(
     curve: backend.Array,
     landscape: Callable[[backend.Array], float],
     num_steps: int = 10**3,
 ) -> backend.Array:
-    """Compute the cost of moving along a curve.
+    """Compute the energy cost of moving along a curve.
 
     Parameters
     ----------
@@ -71,14 +71,14 @@ def mc(
     uphill_mask = gradient >= 0.0
     downhill_mask = gradient < 0.0
 
-    movement_cost_per_step = arc_lengths[1:] - arc_lengths[0:-1]
-    movement_cost_per_step[uphill_mask] *= (1.0 + gradient[uphill_mask]) ** 2
-    movement_cost_per_step[downhill_mask] *= backend.exp(gradient[downhill_mask])
+    energy_cost_per_step = arc_lengths[1:] - arc_lengths[0:-1]
+    energy_cost_per_step[uphill_mask] *= (1.0 + gradient[uphill_mask]) ** 2
+    energy_cost_per_step[downhill_mask] *= backend.exp(gradient[downhill_mask])
 
     return {
-        "total_cost": backend.sum(movement_cost_per_step),
+        "total_cost": backend.sum(energy_cost_per_step),
         "arc_length": arc_length,
-        "cumulative_cost": np.insert(np.cumsum(movement_cost_per_step), 0, 0.0),
+        "cumulative_cost": np.insert(np.cumsum(energy_cost_per_step), 0, 0.0),
         "arc_lengths": arc_lengths,
         "arc_lengths_to_points": arc_lengths_to_points,
         "elevation": landscape(interpolated_points_on_curve),
