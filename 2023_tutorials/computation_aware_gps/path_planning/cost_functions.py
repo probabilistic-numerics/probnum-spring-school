@@ -6,7 +6,7 @@ from probnum import backend
 from scipy.interpolate import make_interp_spline
 
 
-def movement_cost(
+def mc(
     curve: backend.Array,
     landscape: Callable[[backend.Array], float],
     num_steps: int = 10**3,
