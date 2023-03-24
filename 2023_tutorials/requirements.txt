@@ -9,4 +9,6 @@ ipympl
 
 # Scientific computing
 numpy
+scipy
+jax[cpu]
 git+https://github.com/JonathanWenger/itergp.git@main#egg=itergp
