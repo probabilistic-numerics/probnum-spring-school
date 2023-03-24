@@ -42,7 +42,6 @@ def energy_cost(
     arc_lengths = backend.linspace(0.0, arc_length, num_steps + 1)
 
     if len(steps) == 0:
-        # TODO
         return {
             "total_cost": 0.0,
             "arc_length": arc_length,
