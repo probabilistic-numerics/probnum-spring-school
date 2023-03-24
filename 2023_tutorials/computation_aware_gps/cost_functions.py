@@ -9,7 +9,7 @@ from scipy.interpolate import make_interp_spline
 def movement_cost(
     curve: backend.Array,
     landscape: Callable[[backend.Array], float],
-    num_timesteps: int = 10**3,
+    num_steps: int = 10**3,
 ) -> backend.Array:
     """Compute the cost of moving along a curve.
 
@@ -19,7 +19,7 @@ def movement_cost(
         curve with n steps in d-dimensional space given by an n x d array.
     landscape
         Function defining the landscape.
-    num_timesteps
+    num_steps
         Number of time steps taken along the curve.
 
     Returns
@@ -35,49 +35,51 @@ def movement_cost(
     # Compute the time parametrization of the curve
     curve = np.unique(curve, axis=0)
     steps = curve[1:, :] - curve[0:-1, :]
-    time = backend.linspace(0.0, 1.0, num_timesteps + 1)
+    arc_lengths_to_points = np.insert(
+        np.cumsum(np.linalg.norm(steps, axis=1), axis=0), 0, 0.0
+    )
+    arc_length = arc_lengths_to_points[-1]
+    arc_lengths = backend.linspace(0.0, arc_length, num_steps + 1)
 
     if len(steps) == 0:
+        # TODO
         return {
             "total_cost": 0.0,
-            "cumulative_cost": backend.zeros((num_timesteps,)),
-            "elevation": landscape(curve[0, :]) * backend.ones((num_timesteps + 1,)),
-            "time": time,
+            "arc_length": arc_length,
+            "cumulative_cost": backend.zeros((num_steps + 1,)),
+            "arc_lengths": arc_lengths,
+            "arc_lengths_to_points": arc_lengths_to_points,
+            "elevation": landscape(curve[0, :]) * backend.ones((num_steps + 1,)),
         }
 
-    timepoints = np.cumsum(np.linalg.norm(steps, axis=1), axis=0)
-    timepoints = np.insert(timepoints, 0, 0.0) / timepoints[-1]
-
     # Interpolate curve
-    curve_interp = make_interp_spline(timepoints, curve, k=1)
-    points_on_curve = curve_interp(time)
+    curve_interp = make_interp_spline(arc_lengths_to_points, curve, k=1)
+    interpolated_points_on_curve = curve_interp(arc_lengths)
 
-    # Length of the curve segments
-    curve_segment_lengths = np.linalg.norm(
-        points_on_curve[1:, :] - points_on_curve[0:-1, :], axis=1
+    # Gradient along curve
+    gradient = (
+        (
+            landscape(interpolated_points_on_curve[1:, :])
+            - landscape(interpolated_points_on_curve[0:-1, :])
+        )
+        / arc_length
+        * num_steps
     )
-
-    # Elevation change along curve
-    gradient = landscape(points_on_curve[1:, :]) - landscape(points_on_curve[0:-1, :])
 
     # Compute cost of moving along curve
     uphill_mask = gradient >= 0.0
     downhill_mask = gradient < 0.0
 
-    movement_cost_per_step = curve_segment_lengths
-    movement_cost_per_step[uphill_mask] *= (
-        1.0 + num_timesteps * gradient[uphill_mask]
-    ) ** 2
-    movement_cost_per_step[downhill_mask] *= backend.exp(
-        num_timesteps * gradient[downhill_mask]
-    )
+    movement_cost_per_step = arc_lengths[1:] - arc_lengths[0:-1]
+    movement_cost_per_step[uphill_mask] *= (1.0 + gradient[uphill_mask]) ** 2
+    movement_cost_per_step[downhill_mask] *= backend.exp(gradient[downhill_mask])
 
     return {
         "total_cost": backend.sum(movement_cost_per_step),
-        "cumulative_cost": np.cumsum(movement_cost_per_step),
-        "elevation": landscape(points_on_curve),
+        "arc_length": arc_length,
+        "cumulative_cost": np.insert(np.cumsum(movement_cost_per_step), 0, 0.0),
+        "arc_lengths": arc_lengths,
+        "arc_lengths_to_points": arc_lengths_to_points,
+        "elevation": landscape(interpolated_points_on_curve),
         "gradient": gradient,
-        "timepoints": timepoints,
-        "time": time,
-        "cumulative_distance": np.insert(np.cumsum(curve_segment_lengths), 0, 0.0),
     }
