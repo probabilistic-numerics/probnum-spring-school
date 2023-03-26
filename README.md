@@ -9,9 +9,15 @@
 Tutorial materials of the [Probabilistic Numerics Spring School](https://www.probnumschool.org/).
 
 ## Setup
-In a new Python environment simply run
+Start by cloning this repository with
 
 ```bash
-cd 2023_tutorials
+git clone git@github.com:probabilistic-numerics/probnum-spring-school.git
+```
+
+Then create a new virtual Python environment and run
+
+```bash
+cd probnum-spring-school/2023_tutorials
 pip install -r requirements.txt
 ```
