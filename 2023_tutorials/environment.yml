@@ -1,0 +1,16 @@
+name: pns23
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.6
+  - numpy
+  - scipy
+  - jupyter
+  - matplotlib
+  - ipympl
+  - jax[cpu]
+  - pip
+  - pip:
+    - git+https://github.com/JonathanWenger/itergp.git@main#egg=itergp
+    - tueplots
+    - mpl_point_clicker
