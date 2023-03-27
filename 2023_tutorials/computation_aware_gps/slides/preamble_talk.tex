@@ -1,0 +1,296 @@
+%!TEX root = talk.tex
+
+% Fonts and encoding
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{microtype}      % microtypography
+\usepackage{inconsolata}
+\usepackage[sfdefault,light,condensed]{roboto}
+\usefonttheme[onlymath]{serif} % serif fonts for mathematics
+
+% Enumerations and Items
+\usepackage{enumitem}
+\setitemize{label=\usebeamerfont*{itemize item}%
+  \usebeamercolor[fg]{itemize item}
+  \usebeamertemplate{itemize item}}
+\usepackage{fourier-orns} % starred bullets
+
+% Mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{mathtools}
+\usepackage{relsize}
+\usepackage{bm}
+\usepackage{physics}
+% Use "\input{math_commands.tex}" in the main tex file to include further notational commands.
+
+% Figures
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{caption}
+\captionsetup[table]{skip=5pt}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+
+% Tikz
+\usepackage{etoolbox}
+\robustify\bfseries
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots,patchplots}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{calc}
+\newcommand{\colordot}[2][0.75ex]{\tikz[baseline=-0.66ex]\draw[#2,fill=#2,radius=#1,fill opacity=0.4] (0,0) circle ;}%
+\newcommand{\colorcircle}[2][0.75ex]{\tikz[baseline=-0.66ex]\draw[#2,fill=white,radius=#1,very thick,fill opacity=1.0] (0,0) circle ;}
+\newcommand{\filledcolordot}[2][0.75ex]{\tikz[baseline=-0.66ex]\draw[#2,fill=#2,radius=#1] (0,0) circle ;}%
+
+% Tikz externalize
+\usetikzlibrary{external}
+\tikzexternalize[mode=list and make]
+% use  "make -j 8 -f main.makefile" to compile with 8 parallel threads (this is what it takes to max out the machine, despite it having 4 cores)
+\tikzset{external/force remake=false}
+\tikzsetexternalprefix{figures/external/}
+
+% Plot dimensions
+\newlength{\figureheight}
+\newlength{\figurewidth}
+\newlength{\figheight}
+\newlength{\figwidth}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{rotating}
+\usepackage{siunitx}
+\sisetup{
+  tight-spacing=true,
+  output-exponent-marker=\text{e},
+  exponent-product={},
+  group-separator = {,},
+  mode=text,
+}
+%\renewcommand{\arraystretch}{1.5} % Increase table row height
+\usepackage{multirow}
+
+% Algorithms
+\usepackage{algorithm}% http://ctan.org/pkg/algorithm
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\algrenewcommand{\algorithmiccomment}[1]{\hfill {\textcolor{darkgray}{\scriptsize \# #1}}}
+%\algrenewcommand\alglinenumber[1]{\tiny #1}
+
+% Symbols
+\newcommand{\cmark}{}%
+\DeclareRobustCommand{\cmark}{%
+  \tikz\fill[scale=0.4, color=black!30!green]
+  (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;%
+}
+\newcommand{\xmark}{}%
+\DeclareRobustCommand{\xmark}{%
+  \tikz [x=1.4ex,y=1.4ex,line width=.2ex, color=red] \draw (0,0) -- (1,1) (0,1) -- (1,0);
+}
+\newcommand{\umark}{{\color{orange}\(\thicksim\)}}
+
+% References and Bibliography
+\usepackage{url}
+\usepackage{xr}
+\usepackage{hyperref}
+% \hypersetup{
+%   colorlinks,
+%   linkcolor={black},
+%   citecolor={blue!50!black},
+%   urlcolor={blue!50!black}
+% }
+\usepackage{cleveref}
+\usepackage{bookmark} % Fixes false PDF table of contents
+\usepackage[numbers,sort&compress]{natbib}
+\renewcommand*{\bibfont}{\small} % fontsize references
+\usepackage{bibentry}
+\nobibliography*
+
+% Colors
+\usepackage{xcolor, colortbl}
+\definecolor{mplblue}{HTML}{1f77b4}
+\definecolor{mplorange}{HTML}{ff7f0e}
+\definecolor{mplgreen}{HTML}{2ca02c}
+\definecolor{mplred}{HTML}{d62728}
+\definecolor{mplpurple}{HTML}{9467bd}
+\definecolor{lred}{RGB}{200,0,0}
+\definecolor{dred}{RGB}{130,0,0}
+\definecolor{dblu}{RGB}{0,0,130}
+\definecolor{dgre}{RGB}{0,130,0}
+\definecolor{dgra}{RGB}{50,50,50}
+\definecolor{mgra}{RGB}{221,222,214}
+\definecolor{lgra}{RGB}{238,238,234}
+\definecolor{MPG}{RGB}{000,125,122}
+\definecolor{lMPG}{RGB}{000,190,189}
+\definecolor{ora}{HTML}{FF9933} %EI orange
+\definecolor{lblu}{HTML}{7DA7D9}%PS blue
+% Color scheme of the Eberhard-Karls University
+\definecolor{TUred}{RGB}{141,45,57}
+\definecolor{TUdark}{RGB}{55,65,74}
+\definecolor{TUgold}{RGB}{174,159,109}
+\definecolor{TUgray}{RGB}{175,179,183}
+\definecolor{ERC_ora}{RGB}{233,93,15}
+\setlength{\parindent}{0pt}
+
+\newcommand{\mpg}[1]{{\color{MPG} #1}}   % highlight command 1
+\newcommand{\dre}[1]{{\color{TUred} #1}}   % highlight command 1
+\newcommand{\blu}[1]{{\color{dblu} #1}}   % highlight command 1
+\newcommand{\ora}[1]{{\color{ora} #1}}   % highlight command 1
+\newcommand{\gra}[1]{{\color{mgra} #1}}   % highlight command 1
+\newcommand{\gold}[1]{{\color{TUgold} #1}}   % highlight command 1
+\setbeamercolor{alerted text}{fg = TUred} % highlight command 2
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=TUred}
+\setbeamercolor{item projected}{use=item,fg=black,bg = TUred}
+\setbeamercolor*{palette primary}{fg=white,bg=TUred}
+\setbeamercolor*{palette secondary}{parent=palette primary,use=palette
+  primary,bg=dblu}
+\setbeamercolor*{palette tertiary}{parent=palette
+  primary,use=palette primary,fg=white,bg=dgre}
+\setbeamercolor*{palette
+  quaternary}{parent=palette primary,use=palette primary,bg=dgre}
+\setbeamercolor*{block body}{bg=TUgray, fg =black}
+\setbeamercolor*{block title}{parent=structure,bg=TUdark,fg=white}
+\setbeamercolor{block body alerted}{bg=TUgray,fg=TUred}
+\setbeamercolor{block title example}{fg=MPG,bg=white}
+\setbeamercolor{block body example}{fg=black,bg=white}
+\setbeamercolor{frametitle}{bg=TUdark,fg=white}
+\setbeamercolor{frametitle right}{bg=white}
+\setbeamercolor{framesubtitle}{fg=TUgray}
+\setbeamercolor{title}{fg=TUred}
+\setbeamercolor{subtitle}{fg=black} \setbeamercolor{author}{fg=TUdark}
+\setbeamercolor{date}{fg=TUdark}
+\setbeamercolor*{titlelike}{parent=structure}
+
+
+
+%------------ Beamer template settings and commands ------------%
+
+% Text
+\let\emph\relax % redefine \emph to COLORS. % there's no \RedeclareTextFontCommand
+\DeclareTextFontCommand{\emph}{\color{TUred}}
+
+% Enumerations
+\setbeamertemplate{itemize items}{\starredbullet}
+
+% Table of Contents
+\setbeamertemplate{section in toc}{\vspace{.75em} \inserttocsection \par}
+
+% Bibliography
+\setbeamertemplate{bibliography item}[triangle]
+
+% General
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{}
+\setbeamertemplate{footline}{\hfill\color{TUdark}{\insertframenumber}\hspace{2ex}\null\newline\vspace{2mm}}
+\arrayrulecolor{TUdark}
+
+\newcommand{\filltotal}{\hspace{0pt plus 1 filll}}
+\newcommand{\titlemark}[1]{
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[draw=none,text=TUgray,anchor=north east,yshift=-.8259cm] at (current
+    page.north east) {\footnotesize{#1}};
+  \end{tikzpicture}
+}
+\newcommand{\graybox}[1]{
+  \tikzexternaldisable%
+  \begin{center}%
+    \tikz{\node[fill=TUdark,text width=\textwidth]{%
+        \begin{minipage}{1.0\linewidth}%
+          \color{white}
+          \begin{center}%
+            #1
+          \end{center}%
+        \end{minipage}};}%
+  \end{center}%
+  \tikzexternalenable
+}
+\newcommand{\divider}{\noindent\makebox[\linewidth]{\rule{\paperwidth}{.4pt}}  }
+\newcommand{\paperwhite}{\includegraphics[height=.6\baselineskip]{../text-document_white.png}\hspace{.5em}}
+\newcommand{\paperblack}{\includegraphics[height=.6\baselineskip]{../text-document.png}\hspace{.5em}}
+\newcommand{\bookwhite}{\includegraphics[height=.6\baselineskip]{../book-white.png}\hspace{.5em}}
+\newcommand{\bookblack}{\includegraphics[height=.6\baselineskip]{../book-black.png}\hspace{.5em}}
+
+\setbeamercolor{ribboncolor}{fg=black,bg=TUgold}
+\newcommand{\ribbon}[1]{
+  \begin{beamercolorbox}[wd=\paperwidth,colsep*=.3em,center]{ribboncolor}
+    \setbeamertemplate{itemize items}{\color{black}\starredbullet}
+    \setbeamercolor{structure}{fg=white}
+    \begin{minipage}{1.0\textwidth}%
+      #1
+    \end{minipage}
+  \end{beamercolorbox}
+}
+\setbeamercolor{whiteribboncolor}{fg=black,bg=white}
+\newcommand{\whiteribbon}[1]{
+  \begin{beamercolorbox}[wd=\paperwidth,colsep*=.5em,center]{whiteribboncolor}
+    \setbeamertemplate{itemize items}{\color{black}\starredbullet}
+    \setbeamercolor{structure}{fg=black}
+    \begin{minipage}{\textwidth}%
+      #1
+    \end{minipage}
+  \end{beamercolorbox}
+}
+\setbeamercolor{blackribboncolor}{fg=white,bg=TUdark}
+\newcommand{\blackribbon}[1]{
+  \begin{beamercolorbox}[wd=\paperwidth,colsep*=.5em,center]{blackribboncolor}
+    \setbeamertemplate{itemize items}{\color{white}\starredbullet}
+    \setbeamercolor{structure}{fg=white}
+    \begin{minipage}{\textwidth}%
+      #1
+    \end{minipage}
+  \end{beamercolorbox}
+}
+\newcommand{\bfa}[1]{
+  \begin{beamercolorbox}[wd=\paperwidth,colsep*=.5em,center]{white}
+    \setbeamertemplate{itemize items}{\color{black}\starredbullet}
+    \tikzexternaldisable
+    \begin{tikzpicture}
+      \node[signal,minimum width=\paperwidth,draw=TUgold,fill=TUgold,text=black,text width=\textwidth]{
+        \begin{minipage}{\textwidth}%
+          #1
+        \end{minipage}};
+    \end{tikzpicture}
+    \tikzexternalenable
+  \end{beamercolorbox}
+}
+\newcommand{\bfi}[1]{
+  \begin{beamercolorbox}[wd=\paperwidth,colsep*=.5em,center]{white}
+    \setbeamertemplate{itemize items}{\color{black}\starredbullet}
+    \tikzexternaldisable
+    \begin{tikzpicture}
+      \node[signal,signal from=west,signal to=nowhere,minimum width=\linewidth,draw=TUgold,fill=TUgold,text=black,signal pointer angle=140]{
+        \begin{minipage}{\textwidth}%
+          #1
+        \end{minipage}};
+    \end{tikzpicture}\hspace{2.5mm}
+    \tikzexternalenable
+  \end{beamercolorbox}
+}
+\newcommand{\blackslide}{
+  {\setbeamercolor{background canvas}{bg=black}
+      \begin{frame}[plain]
+        \null
+      \end{frame}
+    }}
+\newcommand{\blackslidetext}[1]{
+  {\setbeamercolor{background canvas}{bg=TUdark}%
+      \setbeamercolor{structure}{fg=white}%
+      \setbeamercolor{normal text}{fg=white}%
+      \setbeamercolor{body}{fg=white}%
+      \setbeamercolor{itemize/enumerate body}{fg=white}%
+      \setbeamertemplate{itemize items}{\color{white}\starredbullet}%
+      \begin{frame}
+        \color{white} #1
+      \end{frame}
+    }}
+% logo in the upper right corner
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+    \put(\LenToUnit{0.83\paperwidth},\LenToUnit{0.915\paperheight}){#1}}}
+\AddToShipoutPictureFG{
+  \AtPagemyUpperLeft{{\includegraphics[width=2.5cm,keepaspectratio]{figures/logos/UT_WBMW_Weiss_1C.pdf}}}
+}%

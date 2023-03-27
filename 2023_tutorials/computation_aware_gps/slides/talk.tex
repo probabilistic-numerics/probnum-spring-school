@@ -1,0 +1,112 @@
+\documentclass[10pt,usepdftitle=false,aspectratio=169]{beamer}
+
+% Preamble
+\input{preamble_talk}
+
+\begin{document}
+
+\tikzexternaldisable
+\begin{frame}
+	\title{\huge
+		{\bf Tutorial:\\ Learning to Navigate with Gaussian Processes}\vspace{-0.25em}}
+		\author{\large Jonathan Wenger}
+		
+	\date{}
+
+	\maketitle
+
+	\vspace{-4em}
+
+	\centerline{
+		\url{https://github.com/probabilistic-numerics/probnum-spring-school}
+	}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.75\textwidth]{../img/learning_to_plan_illustration.jpg}
+	\end{figure}
+
+	\thispagestyle{empty}
+	\setcounter{framenumber}{0}
+
+	%%%%%%%%%%%%%%%% ANIMATED LOGO %%%%%%%%%%%%%%%%
+	%  \tikzifexternalizing{}{%
+	%  \begin{tikzpicture}[remember picture,overlay]
+	%  \node[anchor=south,yshift=-5mm] at (current page.south) 
+	%  {\animategraphics[width=0.9995\paperwidth,autoplay,loop]{36}{figures/logos/logo_TU_169_}{0}{39}};
+	%    \end{tikzpicture}%
+	%  }%
+	% if you don't like the animation or it doesn't work for you, use this here instead:
+	% \begin{columns}
+	% 	\includegraphics[width=0.9995\paperwidth]{figures/logos/logo_TU_169_0.pdf}
+	% \end{columns}
+	%%%%%%%%%%%%%% END OF ANIMATED LOGO %%%%%%%%%%%
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Setup}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth]{figures/setup.png}
+	\end{figure}
+
+\end{frame}
+
+% \blackslidetext{
+% 	\frametitle{Summary}
+
+% 	\begin{columns}[t]
+
+% 		\column{.74\textwidth}
+% 		\makebox[\linewidth]{\color{TUgray}{\rule{\textwidth}{2pt}}}
+% 		\begin{center}
+% 			\textbf{Posterior and Computational Uncertainty in Gaussian Processes}
+% 		\end{center}
+% 		\centerline{\scriptsize Jonathan Wenger, Geoff Pleiss, Marvin Pförtner, Philipp Hennig and John Cunningham}
+% 		\makebox[\linewidth]{\color{TUgray}{\rule{\textwidth}{2pt}}}
+
+% 		{\small
+% 			\begin{itemize}
+% 				\item IterGP: new class of GP approximations which implicitly quantify computational uncertainty.
+% 				\item IterGP instances extend classic methods (Cholesky, CG, Nyström, \dots).
+% 				\item Strong theoretical guarantees.
+% 				\item Modeling computational uncertainty either saves computation or improves generalization.
+% 			\end{itemize}}
+
+% 		\vspace{1em}
+% 		{\def\arraystretch{1.5}\tabcolsep=0.5em
+% 			\begin{tabular}{r c m{8cm}}
+% 				\textbf{Paper}          & \includegraphics[width=.05\textwidth]{figures/logos/arxiv-logo.png}  & {\small \url{https://arxiv.org/abs/2107.00243}}         \\
+% 				\textbf{Implementation} & \includegraphics[width=.03\textwidth]{figures/logos/github-icon.png} & {\small \url{https://github.com/JonathanWenger/itergp}} \\
+% 			\end{tabular}}
+
+% 		\column{.25\textwidth}
+
+% 		\centering
+% 		\includegraphics[width=.4\textwidth]{figures/portraits/portrait_jw.jpg}
+% 		% \hspace{0.01em}
+% 		\includegraphics[width=.4\textwidth]{figures/portraits/portrait_gp.jpg}\\
+% 		\includegraphics[width=.4\textwidth]{figures/portraits/portrait_mp.jpg}
+% 		\vspace{0.2em}
+% 		\includegraphics[width=.4\textwidth]{figures/portraits/portrait_ph.jpg}\\
+% 		\vspace{0.2em}
+% 		\includegraphics[width=.4\textwidth]{figures/portraits/portrait_jc.jpg}
+
+% 	\end{columns}
+
+% }
+
+% References
+\newcounter{references}
+\setcounter{references}{\value{framenumber}} % Adjust frame counter to not include references
+
+\begin{frame}[allowframebreaks]{References}
+	\bibliographystyle{unsrtnat}
+	\bibliography{../paper/references}
+\end{frame}
+
+\setcounter{framenumber}{\value{references}}
+
+\end{document}

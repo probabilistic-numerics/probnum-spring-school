@@ -1,0 +1,439 @@
+#### Project ####
+
+# Paper
+**/paper/**/*.pdf
+
+# Data
+*.mat
+*.npy
+*.npz
+*.zip
+*.gz
+# Whitelist download scripts
+!data/**/*.py
+
+# Figures and plots
+**/plots/**/*.*
+**/figures/**/*.*
+**/figures/external/*.*
+# Whitelist fig folder contents
+!**/paper/**/figures/**/*.pdf
+!**/paper/**/figures/**/*.png
+!**/paper/**/figures/**/*.tex
+!**/paper/**/figures/**/*.svg
+!**/talks/**/figures/**/*.pdf
+!**/talks/**/figures/**/*.png
+!**/talks/**/figures/**/*.jpg
+!**/talks/**/figures/**/*.tex
+!**/.gitignore
+
+## Experiments
+**/experiments/**/out/*
+
+
+#### LaTeX ####
+
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+## Ignore generated documents and plot files
+#*.pdf
+*.ps
+# *.eps
+
+## Intermediate documents:
+*.dvi
+*.xdv
+*-converted-to.*
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+*.makefile
+
+## Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+## Build tool directories for auxiliary files
+# latexrun
+latex.out/
+
+## Auxiliary and intermediate files from other packages:
+# algorithms
+*.alg
+*.loa
+
+# achemso
+acs-*.bib
+
+# amsthm
+*.thm
+
+# beamer
+*.nav
+*.pre
+*.snm
+*.vrb
+
+# changes
+*.soc
+
+# comment
+*.cut
+
+# cprotect
+*.cpt
+
+# elsarticle (documentclass of Elsevier journals)
+*.spl
+
+# endnotes
+*.ent
+
+# fixme
+*.lox
+
+# feynmf/feynmp
+*.mf
+*.mp
+*.t[1-9]
+*.t[1-9][0-9]
+*.tfm
+
+#(r)(e)ledmac/(r)(e)ledpar
+*.end
+*.?end
+*.[1-9]
+*.[1-9][0-9]
+*.[1-9][0-9][0-9]
+*.[1-9]R
+*.[1-9][0-9]R
+*.[1-9][0-9][0-9]R
+*.eledsec[1-9]
+*.eledsec[1-9]R
+*.eledsec[1-9][0-9]
+*.eledsec[1-9][0-9]R
+*.eledsec[1-9][0-9][0-9]
+*.eledsec[1-9][0-9][0-9]R
+
+# glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+
+# uncomment this for glossaries-extra (will ignore makeindex's style files!)
+# *.ist
+
+# gnuplottex
+*-gnuplottex-*
+
+# gregoriotex
+*.gaux
+*.gtex
+
+# htlatex
+*.4ct
+*.4tc
+*.idv
+*.lg
+*.trc
+*.xref
+
+# hyperref
+*.brf
+
+# knitr
+*-concordance.tex
+# TODO Comment the next line if you want to keep your tikz graphics files
+*.tikz
+*-tikzDictionary
+
+# listings
+*.lol
+
+# luatexja-ruby
+*.ltjruby
+
+# makeidx
+*.idx
+*.ilg
+*.ind
+
+# minitoc
+*.maf
+*.mlf
+*.mlt
+*.mtc[0-9]*
+*.slf[0-9]*
+*.slt[0-9]*
+*.stc[0-9]*
+*.ptc[0-9]*
+*.ptc
+
+# minted
+_minted*
+*.pyg
+
+# morewrites
+*.mw
+
+# nomencl
+*.nlg
+*.nlo
+*.nls
+
+# pax
+*.pax
+
+# pdfpcnotes
+*.pdfpc
+
+# sagetex
+*.sagetex.sage
+*.sagetex.py
+*.sagetex.scmd
+
+# scrwfile
+*.wrt
+
+# sympy
+*.sout
+*.sympy
+sympy-plots-for-*.tex/
+
+# pdfcomment
+*.upa
+*.upb
+
+# pythontex
+*.pytxcode
+pythontex-files-*/
+
+# tcolorbox
+*.listing
+
+# thmtools
+*.loe
+
+# TikZ & PGF
+*.dpth
+*.md5
+*.auxlock
+*.figlist
+*.makefile
+
+# todonotes
+*.tdo
+
+# vhistory
+*.hst
+*.ver
+
+# easy-todo
+*.lod
+
+# xcolor
+*.xcp
+
+# xmpincl
+*.xmpi
+
+# xindy
+*.xdy
+
+# xypic precompiled matrices and outlines
+*.xyc
+*.xyd
+
+# endfloat
+*.ttt
+*.fff
+
+# Latexian
+TSWLatexianTemp*
+
+## Editors:
+# WinEdt
+*.bak
+*.sav
+
+# Texpad
+.texpadtmp
+
+# LyX
+*.lyx~
+
+# Kile
+*.backup
+
+# gummi
+.*.swp
+
+# KBibTeX
+*~[0-9]*
+
+# auto folder when using emacs and auctex
+./auto/*
+*.el
+
+# expex forward references with \gathertags
+*-tags.tex
+
+# standalone packages
+*.sta
+
+# Makeindex log files
+*.lpz
+
+## Python ##
+
+# Temporary and binary files
+*~
+*.py[cod]
+*.so
+*.cfg
+!.isort.cfg
+!setup.cfg
+*.orig
+*.log
+*.pot
+__pycache__/*
+.cache/*
+.*.swp
+*.ipynb_checkpoints
+.DS_Store
+._.DS_Store
+
+# Project files
+.ropeproject
+.project
+.pydevproject
+.settings
+.idea
+tags
+
+# Package files
+*.egg
+*.eggs/
+.installed.cfg
+*.egg-info
+
+# Unittest and coverage
+htmlcov/*
+.coverage
+.tox
+junit.xml
+coverage.xml
+.pytest_cache/
+
+# Build and docs folder/files
+build/*
+dist/*
+sdist/*
+docs/api/*
+docs/_rst/*
+docs/_build/*
+cover/*
+MANIFEST
+
+# Per-project virtualenvs
+.venv*/
+
+
+## IDEs ##
+
+# IntelliJ: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff
+.idea/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Generated files
+.idea/**/contentModel.xml
+
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.  Uncomment if using
+# auto-import.
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+
+# CMake
+cmake-build-*/
+
+# Mongo Explorer plugin
+.idea/**/mongoSettings.xml
+
+# File-based project format
+*.iws
+
+# IntelliJ
+#out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+.idea/replstate.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Editor-based Rest Client
+.idea/httpRequests
+
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser
+
+# VSCode
+.vscode/*
